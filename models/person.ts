@@ -11,13 +11,4 @@ export class Person implements PersonDTO {
         this.name = ""
         this.age = 0
     }
-
-    setName(name: string) {
-        this.name = name
-    }
-
-    setAge(age: number){
-        this.age = age
-    }
-
 }

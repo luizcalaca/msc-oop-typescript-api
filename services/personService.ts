@@ -8,15 +8,20 @@ export class personService {
         this.personArray = []
     }
 
-    public push(person: Person): void {
-        this.personArray.push(person)
+    public async push(person: Person) {
+        await this.personArray.push(person)
     }
 
     public pop(): Person {
        return this.personArray.pop() as Person
     }
 
-    public getAll(): Person[]{
+    public getAll(): Person[] {
+        let person: Person = {
+            name: "Luiz",
+            age: 10
+        }
+        this.personArray.push(person)
         return this.personArray
     }
 }
