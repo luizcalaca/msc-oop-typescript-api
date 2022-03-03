@@ -1,23 +1,24 @@
-import { Request, Router } from 'express';
+import express from 'express';
+import { personController } from '../controllers/personController';
+import personMiddleware from '../middleware/person.middleware';
+import { CommonRoutesConfig } from '../utils/common.routes.config';
 
-import {personController} from '../controllers/personController';
+export default class personRoutes extends CommonRoutesConfig{
 
-export default class personRouter {
+    app: express.Application;
 
-    readonly router = Router();
-
-    execute(): Router{
-       this.router.get('/person', new personController().getAll);
-       return this.router
+    constructor(app: express.Application) {
+        super(app, 'personRoutes');
+        this.app = app;
+        this.configureRoutes();
     }
-    
 
+    configureRoutes() {
+       this.app.route(`/users`)
+            .get(new personController().getAll)
+            .post(personMiddleware.validateRequiredUserBodyFields, 
+                new personController().push);
+
+            return this.app;
+    }
 }
-
-
-
-
-
-//router.post('/', personController.push);
-
-//export default router;
