@@ -1,5 +1,7 @@
 import express from 'express';
+import debug from 'debug';
 
+const log: debug.IDebugger = debug('app:person-controller');
 class PersonMiddleware {
 
     async validateRequiredUserBodyFields(req: express.Request, res: express.Response, next: express.NextFunction) {

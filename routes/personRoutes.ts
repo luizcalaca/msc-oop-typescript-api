@@ -1,7 +1,7 @@
 import express from 'express';
 import { personController } from '../controllers/personController';
 import personMiddleware from '../middleware/person.middleware';
-import { CommonRoutesConfig } from '../utils/common.routes.config';
+import { CommonRoutesConfig } from './common.routes.config';
 
 export default class personRoutes extends CommonRoutesConfig{
 
@@ -14,7 +14,7 @@ export default class personRoutes extends CommonRoutesConfig{
     }
 
     configureRoutes() {
-       this.app.route(`/users`)
+       this.app.route(`/person`)
             .get(new personController().getAll)
             .post(personMiddleware.validateRequiredUserBodyFields, 
                 new personController().push);

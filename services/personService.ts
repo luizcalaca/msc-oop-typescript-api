@@ -1,6 +1,6 @@
 import { Person } from "../models/person";
 
-export class personService {
+class personService {
 
     private personArray: Person[];
 
@@ -8,8 +8,8 @@ export class personService {
         this.personArray = []
     }
 
-    public async push(person: Person) {
-        await this.personArray.push(person)
+    public push(person: Person) {
+        this.personArray.push(person)
     }
 
     public pop(): Person {
@@ -22,6 +22,9 @@ export class personService {
             age: 10
         }
         this.personArray.push(person)
+        console.log(this.personArray);
         return this.personArray
     }
 }
+
+export default new personService();
